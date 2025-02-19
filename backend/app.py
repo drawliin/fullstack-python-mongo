@@ -3,7 +3,7 @@ from flask import Flask
 from flask_cors import CORS
 from routes import routes
 
-port = os.getenv('PORT', 5000)
+port = os.getenv('PORT', 4002)
 
 app = Flask(__name__)
 CORS(app)

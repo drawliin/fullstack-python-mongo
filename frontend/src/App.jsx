@@ -5,26 +5,27 @@ const App = () => {
     const [tasks, setTasks] = useState([]);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4002/api';
 
     useEffect(() => {
         fetchTasks();
     }, []);
 
     const fetchTasks = async () => {
-        const res = await axios.get("/api/tasks");
+        const res = await axios.get(`${API_URL}/tasks`);
         setTasks(res.data);
     };
 
     const addTask = async () => {
         if (!title || !description) return;
-        await axios.post("/api/tasks", { title, description });
+        await axios.post(`${API_URL}/tasks`, { title, description });
         fetchTasks();
         setTitle("");
         setDescription("");
     };
 
     const deleteTask = async (id) => {
-        await axios.delete(`/api/tasks/${id}`);
+        await axios.delete(`${API_URL}/tasks/${id}`);
         fetchTasks();
     };
 
